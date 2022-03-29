@@ -1,0 +1,14 @@
+# Plugin Info
+name: SpeedUHC-Plugin
+version: 1.0.0-SNAPSHOT
+description: Adds SpeedUHC to a Bungeecord Server
+author: Unease
+
+# Code Info
+main: me.unease.speeduhc.SpeedUHC
+load: STARTUP
+api-version: 1.17
+
+# Additional Stuff
+website: mgnet.work
+prefix: SpeedUHC

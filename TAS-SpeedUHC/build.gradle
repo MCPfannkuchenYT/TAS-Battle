@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+	mavenCentral()
+    maven { url "https://papermc.io/repo/repository/maven-public/" }
+}
+
+dependencies {
+    compileOnly "io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT"
+}
+
+task upload(type: Exec) {
+	workingDir "${buildDir}/libs"
+	commandLine "cmd.exe /k echo put TAS-SpeedUHC.jar | sftp unease@mgnet.work:speeduhc/_default/plugins".split(" ")
+}
+
+task restartServer(type: Exec) {
+	workingDir "${buildDir}/libs"
+	commandLine "ssh unease@mgnet.work screen -S speeduhc -X stuff ^C".split(" ")
+}
+
+upload.dependsOn = ['build']
+upload.finalizedBy(restartServer)
+upload.group = 'tasbattle'
